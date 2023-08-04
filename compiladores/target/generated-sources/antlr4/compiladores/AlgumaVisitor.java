@@ -155,6 +155,12 @@ public interface AlgumaVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCmdSe(AlgumaParser.CmdSeContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link AlgumaParser#cmdSenao}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCmdSenao(AlgumaParser.CmdSenaoContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link AlgumaParser#cmdCaso}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -274,6 +280,12 @@ public interface AlgumaVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitParcela_unario(AlgumaParser.Parcela_unarioContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link AlgumaParser#parentesis_expressao}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParentesis_expressao(AlgumaParser.Parentesis_expressaoContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link AlgumaParser#parcela_nao_unario}.
 	 * @param ctx the parse tree

@@ -305,6 +305,18 @@ public class AlgumaBaseListener implements AlgumaListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCmdSenao(AlgumaParser.CmdSenaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCmdSenao(AlgumaParser.CmdSenaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCmdCaso(AlgumaParser.CmdCasoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -540,6 +552,18 @@ public class AlgumaBaseListener implements AlgumaListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitParcela_unario(AlgumaParser.Parcela_unarioContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterParentesis_expressao(AlgumaParser.Parentesis_expressaoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitParentesis_expressao(AlgumaParser.Parentesis_expressaoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -12,6 +12,11 @@ public class Escopos {
         criarNovoEscopo(tipo);
     }
 
+    public Escopos(TabelaDeSimbolos t){
+        pilhaDeTabelas = new LinkedList<>();
+        pilhaDeTabelas.push(t);
+    }
+
     public void criarNovoEscopo(TabelaDeSimbolos.TipoAlguma tipo) {
         pilhaDeTabelas.push(new TabelaDeSimbolos(tipo));
     }

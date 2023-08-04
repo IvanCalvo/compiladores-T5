@@ -71,8 +71,9 @@ cmd: cmdLeia | cmdEscreva | cmdSe | cmdCaso | cmdPara | cmdEnquanto |
     cmdFaca | cmdAtribuicao | cmdChamada | cmdRetorne;
 cmdLeia: 'leia' '(' '^'? identificador (',' '^'? identificador)* ')';
 cmdEscreva: 'escreva' '(' expressao (',' expressao)* ')';
-cmdSe: 'se' expressao 'entao' (cmd)* ('senao' (cmd)*)? 'fim_se';
-cmdCaso: 'caso' exp_aritmetica 'seja' selecao ('senao' (cmd)*)? 'fim_caso';
+cmdSe: 'se' expressao 'entao' (cmd)* cmdSenao? 'fim_se';
+cmdSenao: 'senao' (cmd)*;
+cmdCaso: 'caso' exp_aritmetica 'seja' selecao cmdSenao? 'fim_caso';
 cmdPara: 'para' IDENT '<-' exp_aritmetica 'ate' exp_aritmetica 'faca' (cmd)* 'fim_para';
 cmdEnquanto: 'enquanto' expressao 'faca' (cmd)* 'fim_enquanto';
 cmdFaca: 'faca' (cmd)* 'ate' expressao;
@@ -92,10 +93,12 @@ op2: '*' | '/';
 op3: '%';
 parcela: (op_unario)? parcela_unario | parcela_nao_unario;
 parcela_unario: '^'? identificador | IDENT '(' expressao (',' expressao)* ')' |
-            NUM_INT | NUM_REAL | '(' expressao ')';
+            NUM_INT | NUM_REAL | parentesis_expressao;
+parentesis_expressao: '(' expressao ')';
 parcela_nao_unario: '&' identificador | CADEIA;
 exp_relacional: exp_aritmetica (op_relacional exp_aritmetica)?;
 op_relacional: '=' | '<>' | '>=' | '<=' | '>' | '<';
+// expressao: CADEIA | IDENT | termo_logico (op_logico_1 termo_logico)*;
 expressao: termo_logico (op_logico_1 termo_logico)*;
 termo_logico: fator_logico (op_logico_2 fator_logico)*;
 fator_logico: ('nao')? parcela_logica;

@@ -248,6 +248,16 @@ public interface AlgumaListener extends ParseTreeListener {
 	 */
 	void exitCmdSe(AlgumaParser.CmdSeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link AlgumaParser#cmdSenao}.
+	 * @param ctx the parse tree
+	 */
+	void enterCmdSenao(AlgumaParser.CmdSenaoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgumaParser#cmdSenao}.
+	 * @param ctx the parse tree
+	 */
+	void exitCmdSenao(AlgumaParser.CmdSenaoContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link AlgumaParser#cmdCaso}.
 	 * @param ctx the parse tree
 	 */
@@ -447,6 +457,16 @@ public interface AlgumaListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParcela_unario(AlgumaParser.Parcela_unarioContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link AlgumaParser#parentesis_expressao}.
+	 * @param ctx the parse tree
+	 */
+	void enterParentesis_expressao(AlgumaParser.Parentesis_expressaoContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link AlgumaParser#parentesis_expressao}.
+	 * @param ctx the parse tree
+	 */
+	void exitParentesis_expressao(AlgumaParser.Parentesis_expressaoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link AlgumaParser#parcela_nao_unario}.
 	 * @param ctx the parse tree

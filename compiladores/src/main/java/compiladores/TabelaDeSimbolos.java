@@ -45,9 +45,16 @@ public class TabelaDeSimbolos {
     public boolean existe(String nome) {
         return tabela.containsKey(nome);
     }
-    
-    public TipoAlguma verificar(String nome) {
-        return tabela.get(nome).tipo;
+
+    public TipoAlguma verificar(String nome){
+        if(tabela.containsKey(nome))
+            return tabela.get(nome).tipo;
+        return null;
+    }
+
+    public TabelaDeSimbolos(){
+        tabela = new HashMap<>();
+        tipoTabela = new HashMap<>();
     }
     
     public TabelaDeSimbolos(TabelaDeSimbolos.TipoAlguma tipo) {
