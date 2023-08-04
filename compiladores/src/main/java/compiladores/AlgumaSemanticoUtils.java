@@ -251,4 +251,43 @@ public class AlgumaSemanticoUtils {
                 }
         return tipo;
     }
+
+
+    public static String getCType(String val){
+        String tipo = null;
+                switch(val) {
+                    case "literal": 
+                        tipo = "char";
+                        break;
+                    case "inteiro": 
+                        tipo = "int";
+                        break;
+                    case "real": 
+                        tipo = "float";
+                        break;
+                    default:
+                        break;
+                }
+        return tipo;
+    }
+
+    public static String getCTypeSymbol(TabelaDeSimbolos.TipoAlguma tipo){
+        String type = null;
+                switch(tipo) {
+                    case CADEIA: 
+                        type = "s";
+                        break;
+                    case INTEIRO: 
+                        type = "d";
+                        break;
+                    case REAL: 
+                        type = "f";
+                        break;
+                    default:
+                        break;
+                }
+        return type;
+    }
+
+
 }
