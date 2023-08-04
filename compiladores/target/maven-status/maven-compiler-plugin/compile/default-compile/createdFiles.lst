@@ -1,4 +1,5 @@
 compiladores/AlgumaParser$SelecaoContext.class
+compiladores/AlgumaParser$Parentesis_expressaoContext.class
 compiladores/AlgumaParser$CorpoContext.class
 compiladores/AlgumaParser$ConstantesContext.class
 compiladores/AlgumaParser$CmdSeContext.class
@@ -6,6 +7,7 @@ compiladores/AlgumaParser$Exp_relacionalContext.class
 compiladores/AlgumaParser$ParcelaContext.class
 compiladores/AlgumaBaseListener.class
 compiladores/AlgumaParser$Parcela_nao_unarioContext.class
+compiladores/AlgumaGeradorC.class
 compiladores/AlgumaParser$Parcela_logicaContext.class
 compiladores/AlgumaListener.class
 compiladores/AlgumaParser$IdentificadorContext.class
@@ -20,6 +22,7 @@ compiladores/AlgumaParser$Op2Context.class
 compiladores/AlgumaParser$CmdFacaContext.class
 compiladores/AlgumaParser$Op_logico_2Context.class
 compiladores/TabelaDeSimbolos$Structure.class
+compiladores/AlgumaSemanticoUtils$1.class
 compiladores/AlgumaParser$CmdEnquantoContext.class
 compiladores/AlgumaParser$Valor_constanteContext.class
 compiladores/AlgumaParser$Op_logico_1Context.class
@@ -55,6 +58,7 @@ compiladores/AlgumaParser$Numero_intervaloContext.class
 compiladores/AlgumaLexer.class
 compiladores/AlgumaParser$TipoContext.class
 compiladores/TabelaDeSimbolos$TipoAlguma.class
+compiladores/AlgumaParser$CmdSenaoContext.class
 compiladores/AlgumaParser$Declaracao_variavelContext.class
 compiladores/AlgumaParser$DimensaoContext.class
 compiladores/AlgumaParser$CmdParaContext.class
