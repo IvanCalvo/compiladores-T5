@@ -58,7 +58,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitPrograma(AlgumaParser.ProgramaContext ctx) {//constroi a estrutura padrao do programa, visitando declaracoes e corpo
+    public Void visitPrograma(AlgumaParser.ProgramaContext ctx) {
         saida.append("#include <stdio.h>\n");
         saida.append("#include <stdlib.h>\n");
         saida.append("\n");
@@ -73,8 +73,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitDecl_local_global(Decl_local_globalContext ctx) {//define se a declaracao e local, ou global e redireciona
-        // TODO Auto-generated method stub
+    public Void visitDecl_local_global(Decl_local_globalContext ctx) {
+        
         if(ctx.declaracao_local() != null){
             visitDeclaracao_local(ctx.declaracao_local());
         }
@@ -85,7 +85,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCorpo(CorpoContext ctx) {// visita cada declaracao no corpo do codigo, em seguida todos os comandos
+    public Void visitCorpo(CorpoContext ctx) {
         for(AlgumaParser.Declaracao_localContext dec : ctx.declaracao_local()) {
             visitDeclaracao_local(dec);
         }
@@ -98,8 +98,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitDeclaracao_global(Declaracao_globalContext ctx) {//declara ou procedimento ou funcoes
-        // TODO Auto-generated method stub
+    public Void visitDeclaracao_global(Declaracao_globalContext ctx) {
+        
         if(ctx.getText().contains("procedimento")){
             saida.append("void " + ctx.IDENT().getText() + "(");
         }
@@ -123,8 +123,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitIdentificador(IdentificadorContext ctx) {//criado para imprimir identificadores com dimensoes
-        // TODO Auto-generated method stub
+    public Void visitIdentificador(IdentificadorContext ctx) {
+        
         saida.append(" ");
         int i = 0;
         for(TerminalNode id : ctx.IDENT()){
@@ -137,8 +137,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitDimensao(DimensaoContext ctx) {//imprime a dimensao
-        // TODO Auto-generated method stub
+    public Void visitDimensao(DimensaoContext ctx) {
+        
         for(Exp_aritmeticaContext exp : ctx.exp_aritmetica()){
             saida.append("[");
             visitExp_aritmetica(exp);
@@ -149,8 +149,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitParametro(ParametroContext ctx) {//para converter parametros de funções 1 a 1
-        // TODO Auto-generated method stub
+    public Void visitParametro(ParametroContext ctx) {
+        
         int i = 0;
         String cTipo = AlgumaSemanticoUtils.getCType(ctx.tipo_estendido().getText().replace("^", ""));
         TabelaDeSimbolos.TipoAlguma tipo = AlgumaSemanticoUtils.getTipo(ctx.tipo_estendido().getText());
@@ -158,7 +158,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
             if(i++ > 0)
                 saida.append(",");
             visitTipo_estendido(ctx.tipo_estendido());
-            // saida.append(" " + id.getText());
+            
             visitIdentificador(id);
 
             if(cTipo == "char"){
@@ -170,7 +170,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitDeclaracao_local(Declaracao_localContext ctx) {// ve o tipo de declaracao e redireciona
+    public Void visitDeclaracao_local(Declaracao_localContext ctx) {
         System.out.println("Declaring " + ctx.getText());
         if(ctx.declaracao_variavel() != null){
             visitDeclaracao_variavel(ctx.declaracao_variavel());
@@ -186,8 +186,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitDeclaracao_tipo(Declaracao_tipoContext ctx) {//cria um tipo (typedef)
-        // TODO Auto-generated method stub
+    public Void visitDeclaracao_tipo(Declaracao_tipoContext ctx) {
+        
         saida.append("typedef ");
         String cTipo = AlgumaSemanticoUtils.getCType(ctx.tipo().getText().replace("^", ""));
         TabelaDeSimbolos.TipoAlguma tipo = AlgumaSemanticoUtils.getTipo(ctx.tipo().getText());
@@ -209,14 +209,14 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitDeclaracao_variavel(Declaracao_variavelContext ctx) {//declaracao variavel, chama a variavel
+    public Void visitDeclaracao_variavel(Declaracao_variavelContext ctx) {
         visitVariavel(ctx.variavel());
         return null;
     }
 
     @Override
-    public Void visitVariavel(VariavelContext ctx) {//aqui onde realmente as variaveis sao desclarados
-        // TODO Auto-generated method stub
+    public Void visitVariavel(VariavelContext ctx) {
+        
         String cTipo = AlgumaSemanticoUtils.getCType(ctx.tipo().getText().replace("^", ""));
         System.out.println("Visiting " + ctx.getText());
         TabelaDeSimbolos.TipoAlguma tipo = AlgumaSemanticoUtils.getTipo(ctx.tipo().getText());
@@ -257,7 +257,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
                 tabela.adicionar(id.getText(), tipo, TabelaDeSimbolos.Structure.VAR);
             }
             visitTipo(ctx.tipo());
-            // saida.append(id.getText());
+            
             visitIdentificador(id);
             if(cTipo == "char"){
                 saida.append("[80]");
@@ -268,8 +268,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitTipo(TipoContext ctx) {//visita o tipo para definir se é registro, ou estendido, ou normal
-        // TODO Auto-generated method stub
+    public Void visitTipo(TipoContext ctx) {
+        
         String cTipo = AlgumaSemanticoUtils.getCType(ctx.getText().replace("^", ""));
         TabelaDeSimbolos.TipoAlguma tipo = AlgumaSemanticoUtils.getTipo(ctx.getText());
         boolean pointer = ctx.getText().contains("^");
@@ -289,16 +289,16 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
         return null;
     }
     @Override
-    public Void visitTipo_estendido(Tipo_estendidoContext ctx) {//imprime tipo estendido, nada mais é que um ponteiro
-        // TODO Auto-generated method stub
+    public Void visitTipo_estendido(Tipo_estendidoContext ctx) {
+        
         visitTipo_basico_ident(ctx.tipo_basico_ident());
         if(ctx.getText().contains("^"))
             saida.append("*");
         return null;
     }
     @Override
-    public Void visitTipo_basico_ident(Tipo_basico_identContext ctx) {//tipos basicos, ou palavras reservadas, ou variaveis tipo
-        // TODO Auto-generated method stub
+    public Void visitTipo_basico_ident(Tipo_basico_identContext ctx) {
+        
         if(ctx.IDENT() != null){
             saida.append(ctx.IDENT().getText());
         }
@@ -309,8 +309,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitRegistro(RegistroContext ctx) {//cria o struct
-        // TODO Auto-generated method stub
+    public Void visitRegistro(RegistroContext ctx) {
+        
         saida.append("struct {\n");
         ctx.variavel().forEach(var -> visitVariavel(var));
         saida.append("} ");
@@ -318,8 +318,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitDeclaracao_constante(Declaracao_constanteContext ctx) {//declara constante, por meioi do prefixo const
-        // TODO Auto-generated method stub
+    public Void visitDeclaracao_constante(Declaracao_constanteContext ctx) {
+        
         String type = AlgumaSemanticoUtils.getCType(ctx.tipo_basico().getText());
         TabelaDeSimbolos.TipoAlguma typeVar = AlgumaSemanticoUtils.getTipo(ctx.tipo_basico().getText());
         tabela.adicionar(ctx.IDENT().getText(),typeVar,TabelaDeSimbolos.Structure.VAR);
@@ -330,8 +330,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitValor_constante(Valor_constanteContext ctx) {// retorna o valor, convertendo para sintaxe de c
-        // TODO Auto-generated method stub
+    public Void visitValor_constante(Valor_constanteContext ctx) {
+        
         if(ctx.getText().equals("verdadeiro")){
             saida.append("true");
         }
@@ -345,7 +345,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCmd(CmdContext ctx) {// redireciona para o cmd
+    public Void visitCmd(CmdContext ctx) {
         if(ctx.cmdLeia() != null){
             visitCmdLeia(ctx.cmdLeia());
         } else if(ctx.cmdEscreva() != null){
@@ -378,8 +378,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCmdRetorne(CmdRetorneContext ctx) {//adiciona return, e pega a expressao que vai retornar
-        // TODO Auto-generated method stub
+    public Void visitCmdRetorne(CmdRetorneContext ctx) {
+        
         saida.append("return ");
         visitExpressao(ctx.expressao());
         saida.append(";\n");
@@ -387,8 +387,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCmdChamada(CmdChamadaContext ctx) {//comando de chamada de função
-        // TODO Auto-generated method stub
+    public Void visitCmdChamada(CmdChamadaContext ctx) {
+        
         saida.append(ctx.IDENT().getText() + "(");
         int i = 0;
         for(ExpressaoContext exp : ctx.expressao()){
@@ -401,7 +401,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCmdLeia(CmdLeiaContext ctx) {// comando de ler variavel
+    public Void visitCmdLeia(CmdLeiaContext ctx) {
         for(AlgumaParser.IdentificadorContext id: ctx.identificador()) {
             TabelaDeSimbolos.TipoAlguma idType = tabela.verificar(id.getText());
             if(idType != TabelaDeSimbolos.TipoAlguma.CADEIA){
@@ -412,7 +412,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
                 saida.append(");\n");
             } else {
                 saida.append("gets(");
-                // saida.append(id.getText());
+                
                 visitIdentificador(id);
                 saida.append(");\n");
             }
@@ -422,7 +422,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCmdEscreva(CmdEscrevaContext ctx) { // comando para escrever a variavel, verifica o tipo ou na tabela, ou no utils
+    public Void visitCmdEscreva(CmdEscrevaContext ctx) { 
         for(AlgumaParser.ExpressaoContext exp: ctx.expressao()) {
                 Escopos escopo = new Escopos(tabela);
                 System.out.println("Searching for " + exp.getText());
@@ -442,20 +442,20 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCmdAtribuicao(CmdAtribuicaoContext ctx) {//atribui valores para a variavel, e usa strcpy para strings
+    public Void visitCmdAtribuicao(CmdAtribuicaoContext ctx) {
         if(ctx.getText().contains("^"))
             saida.append("*");
         try{
             TabelaDeSimbolos.TipoAlguma tip = tabela.verificar(ctx.identificador().getText());
 
             if(tip != null && tip == TabelaDeSimbolos.TipoAlguma.CADEIA){
-                // saida.append("strcpy(" + ctx.identificador().getText()+","+ctx.expressao().getText()+");\n");
+                
                 saida.append("strcpy(");
                 visitIdentificador(ctx.identificador());
                 saida.append(","+ctx.expressao().getText()+");\n");
             }
             else{
-                // saida.append(ctx.identificador().getText());
+                
                 visitIdentificador(ctx.identificador());
                 saida.append(" = ");
                 saida.append(ctx.expressao().getText());
@@ -469,7 +469,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCmdSe(CmdSeContext ctx) {//transcrição do comando if else
+    public Void visitCmdSe(CmdSeContext ctx) {
         saida.append("if(");
         visitExpressao(ctx.expressao());
         saida.append(") {\n");
@@ -489,7 +489,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitExpressao(ExpressaoContext ctx) {//usado para visitar uma expressao, que e constituida de termos e operadores
+    public Void visitExpressao(ExpressaoContext ctx) {
         if(ctx.termo_logico() != null){
             visitTermo_logico(ctx.termo_logico(0));
 
@@ -504,7 +504,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitTermo_logico(Termo_logicoContext ctx) {//usado para visitar termos logicos
+    public Void visitTermo_logico(Termo_logicoContext ctx) {
         visitFator_logico(ctx.fator_logico(0));
 
         for(int i = 1; i < ctx.fator_logico().size(); i++){
@@ -517,7 +517,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitFator_logico(Fator_logicoContext ctx) {// usado para visitar fatores logicos
+    public Void visitFator_logico(Fator_logicoContext ctx) {
         if(ctx.getText().startsWith("nao")){
             saida.append("!");
         }
@@ -527,7 +527,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitParcela_logica(Parcela_logicaContext ctx) {//usado para visitar parcelas logicas
+    public Void visitParcela_logica(Parcela_logicaContext ctx) {
         if(ctx.exp_relacional() != null){
             visitExp_relacional(ctx.exp_relacional());
         } else{
@@ -541,7 +541,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
         return null;
     }
 
-    // usado para expressoes relacionais, convertendo o simbolo de igualdade para o equivalente em c
+    
     @Override
     public Void visitExp_relacional(Exp_relacionalContext ctx) {
          visitExp_aritmetica(ctx.exp_aritmetica(0));
@@ -559,7 +559,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitExp_aritmetica(Exp_aritmeticaContext ctx) {//visitar expressoes aritmeticas
+    public Void visitExp_aritmetica(Exp_aritmeticaContext ctx) {
         visitTermo(ctx.termo(0));
 
         for(int i = 1; i < ctx.termo().size(); i++){
@@ -571,7 +571,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitTermo(TermoContext ctx) {//visita o termo para verificar se tem fatores
+    public Void visitTermo(TermoContext ctx) {
        visitFator(ctx.fator(0));
 
         for(int i = 1; i < ctx.fator().size(); i++){
@@ -583,7 +583,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitFator(FatorContext ctx) {//visita o fator para verificar se tem parcelas
+    public Void visitFator(FatorContext ctx) {
         visitParcela(ctx.parcela(0));
 
         for(int i = 1; i < ctx.parcela().size(); i++){
@@ -595,7 +595,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitParcela(ParcelaContext ctx) {//redireciona parcela para unaria ou nao unaria
+    public Void visitParcela(ParcelaContext ctx) {
         if(ctx.parcela_unario() != null){
             if(ctx.op_unario() != null){
                 saida.append(ctx.op_unario().getText());
@@ -610,7 +610,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
 
     @Override
     public Void visitParcela_unario(Parcela_unarioContext ctx) {
-        //visitar parcela unario imprimindo todos os identificadores, ou redireciona caso chegou aqui com uma expressao ent
+        
         if(ctx.IDENT() != null){
             saida.append(ctx.IDENT().getText());
             saida.append("(");
@@ -633,15 +633,15 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitParcela_nao_unario(Parcela_nao_unarioContext ctx) {//parcela nao unaria é só o valor do campo
-        // TODO Auto-generated method stub
+    public Void visitParcela_nao_unario(Parcela_nao_unarioContext ctx) {
+        
         saida.append(ctx.getText());
         return null;
     }
 
     @Override
-    public Void visitCmdCaso(CmdCasoContext ctx) {//switch case, tratando intervalos, com visita a expressao aritmetica
-        // TODO Auto-generated method stub
+    public Void visitCmdCaso(CmdCasoContext ctx) {
+        
         saida.append("switch(");
         visit(ctx.exp_aritmetica());
         saida.append("){\n");
@@ -653,14 +653,14 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
         return null;
     }
     @Override
-    public Void visitSelecao(SelecaoContext ctx) {//visita todas os itens da selecao
-        // TODO Auto-generated method stub
+    public Void visitSelecao(SelecaoContext ctx) {
+        
         ctx.item_selecao().forEach(var -> visitItem_selecao(var));
         return null;
     }
     @Override
-    public Void visitItem_selecao(Item_selecaoContext ctx) {// cadda item deve ser tratado para caso seja um intervalo imprima todos os cases do mesmo
-        // TODO Auto-generated method stub
+    public Void visitItem_selecao(Item_selecaoContext ctx) {
+        
         ArrayList<String> intervalo = new ArrayList<>(Arrays.asList(ctx.constantes().getText().split("\\.\\.")));
         String first = intervalo.size() > 0 ? intervalo.get(0) : ctx.constantes().getText();
         String last = intervalo.size() > 1 ? intervalo.get(1) : intervalo.get(0);
@@ -672,8 +672,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
         return null;
     }
     @Override
-    public Void visitCmdSenao(CmdSenaoContext ctx) {//o senao é traduzido como default em c para o cmdcaso
-        // TODO Auto-generated method stub
+    public Void visitCmdSenao(CmdSenaoContext ctx) {
+        
         saida.append("default:\n");
         ctx.cmd().forEach(var -> visitCmd(var));
         saida.append("break;\n");
@@ -681,8 +681,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCmdPara(CmdParaContext ctx) {//criando loop for, ate o valor passado depois do literall ate
-        // TODO Auto-generated method stub
+    public Void visitCmdPara(CmdParaContext ctx) {
+        
         String id = ctx.IDENT().getText();
         saida.append("for(" + id + " = ");
         visitExp_aritmetica(ctx.exp_aritmetica(0));
@@ -695,8 +695,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCmdEnquanto(CmdEnquantoContext ctx) {//cmd enquando loop while em c
-        // TODO Auto-generated method stub
+    public Void visitCmdEnquanto(CmdEnquantoContext ctx) {
+        
         saida.append("while(");
         visitExpressao(ctx.expressao());
         saida.append("){\n");
@@ -706,8 +706,8 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     }
 
     @Override
-    public Void visitCmdFaca(CmdFacaContext ctx) {//comando faca loop do while em c
-        // TODO Auto-generated method stub
+    public Void visitCmdFaca(CmdFacaContext ctx) {
+        
         saida.append("do{\n");
         ctx.cmd().forEach(var -> visitCmd(var));
         saida.append("} while(");
