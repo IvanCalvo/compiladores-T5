@@ -98,7 +98,6 @@ parentesis_expressao: '(' expressao ')';
 parcela_nao_unario: '&' identificador | CADEIA;
 exp_relacional: exp_aritmetica (op_relacional exp_aritmetica)?;
 op_relacional: '=' | '<>' | '>=' | '<=' | '>' | '<';
-// expressao: CADEIA | IDENT | termo_logico (op_logico_1 termo_logico)*;
 expressao: termo_logico (op_logico_1 termo_logico)*;
 termo_logico: fator_logico (op_logico_2 fator_logico)*;
 fator_logico: ('nao')? parcela_logica;
