@@ -25,7 +25,8 @@ public class AlgumaParser extends Parser {
 		T__38=39, T__39=40, T__40=41, T__41=42, T__42=43, T__43=44, T__44=45, 
 		T__45=46, T__46=47, T__47=48, T__48=49, T__49=50, T__50=51, T__51=52, 
 		T__52=53, T__53=54, T__54=55, T__55=56, T__56=57, T__57=58, T__58=59, 
-		NUM_INT=60, NUM_REAL=61, IDENT=62, CADEIA=63, COMENTARIO=64, WS=65;
+		NUM_INT=60, NUM_REAL=61, Digito=62, IDENT=63, Comentario=64, Nao_Fechado=65, 
+		CADEIA=66, Literal_Nao_Fechada=67, ESC_SEQ=68, WS=69, ERR=70;
 	public static final int
 		RULE_programa = 0, RULE_declaracoes = 1, RULE_decl_local_global = 2, RULE_declaracao_local = 3, 
 		RULE_declaracao_variavel = 4, RULE_declaracao_constante = 5, RULE_declaracao_tipo = 6, 
@@ -81,7 +82,8 @@ public class AlgumaParser extends Parser {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			"NUM_INT", "NUM_REAL", "IDENT", "CADEIA", "COMENTARIO", "WS"
+			"NUM_INT", "NUM_REAL", "Digito", "IDENT", "Comentario", "Nao_Fechado", 
+			"CADEIA", "Literal_Nao_Fechada", "ESC_SEQ", "WS", "ERR"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -1027,7 +1029,7 @@ public class AlgumaParser extends Parser {
 			{
 			setState(191);
 			_la = _input.LA(1);
-			if ( !(((_la) & ~0x3f) == 0 && ((1L << _la) & -5764607523033841664L) != 0) ) {
+			if ( !((((_la - 17)) & ~0x3f) == 0 && ((1L << (_la - 17)) & 589338232487939L) != 0) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1199,7 +1201,7 @@ public class AlgumaParser extends Parser {
 				setState(218);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (((_la) & ~0x3f) == 0 && ((1L << _la) & 4611709264669507584L) != 0) {
+				while (((_la) & ~0x3f) == 0 && ((1L << _la) & -9223348790612656128L) != 0) {
 					{
 					{
 					setState(215);
@@ -1256,7 +1258,7 @@ public class AlgumaParser extends Parser {
 				setState(240);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (((_la) & ~0x3f) == 0 && ((1L << _la) & 4611709264669507584L) != 0) {
+				while (((_la) & ~0x3f) == 0 && ((1L << _la) & -9223348790612656128L) != 0) {
 					{
 					{
 					setState(237);
@@ -1490,7 +1492,7 @@ public class AlgumaParser extends Parser {
 			setState(278);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 4611709264669507584L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & -9223348790612656128L) != 0) {
 				{
 				{
 				setState(275);
@@ -1866,7 +1868,7 @@ public class AlgumaParser extends Parser {
 			setState(329);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 4611709264669507584L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & -9223348790612656128L) != 0) {
 				{
 				{
 				setState(326);
@@ -1941,7 +1943,7 @@ public class AlgumaParser extends Parser {
 			setState(341);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 4611709264669507584L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & -9223348790612656128L) != 0) {
 				{
 				{
 				setState(338);
@@ -2093,7 +2095,7 @@ public class AlgumaParser extends Parser {
 			setState(363);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 4611709264669507584L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & -9223348790612656128L) != 0) {
 				{
 				{
 				setState(360);
@@ -2165,7 +2167,7 @@ public class AlgumaParser extends Parser {
 			setState(374);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 4611709264669507584L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & -9223348790612656128L) != 0) {
 				{
 				{
 				setState(371);
@@ -2233,7 +2235,7 @@ public class AlgumaParser extends Parser {
 			setState(383);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 4611709264669507584L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & -9223348790612656128L) != 0) {
 				{
 				{
 				setState(380);
@@ -2548,7 +2550,7 @@ public class AlgumaParser extends Parser {
 			setState(422);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (((_la) & ~0x3f) == 0 && ((1L << _la) & 4611709264669507584L) != 0) {
+			while (((_la) & ~0x3f) == 0 && ((1L << _la) & -9223348790612656128L) != 0) {
 				{
 				{
 				setState(419);
@@ -3917,7 +3919,7 @@ public class AlgumaParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001A\u022c\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001F\u022c\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
@@ -3996,7 +3998,7 @@ public class AlgumaParser extends Parser {
 		"4\u00015\u00015\u00016\u00016\u00016\u0000\u00007\u0000\u0002\u0004\u0006"+
 		"\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c\u001e \"$&(*,."+
 		"02468:<>@BDFHJLNPRTVXZ\\^`bdfhjl\u0000\u0006\u0001\u0000\f\u000f\u0003"+
-		"\u0000\u0011\u0012<=??\u0001\u0000./\u0001\u000001\u0002\u0000\u0006\u0006"+
+		"\u0000\u0011\u0012<=BB\u0001\u0000./\u0001\u000001\u0002\u0000\u0006\u0006"+
 		"48\u0001\u0000\u0011\u0012\u0238\u0000n\u0001\u0000\u0000\u0000\u0002"+
 		"w\u0001\u0000\u0000\u0000\u0004|\u0001\u0000\u0000\u0000\u0006\u0081\u0001"+
 		"\u0000\u0000\u0000\b\u0083\u0001\u0000\u0000\u0000\n\u0086\u0001\u0000"+
@@ -4033,19 +4035,19 @@ public class AlgumaParser extends Parser {
 		"\u0000\u0000\u0000\u0081\u007f\u0001\u0000\u0000\u0000\u0081\u0080\u0001"+
 		"\u0000\u0000\u0000\u0082\u0007\u0001\u0000\u0000\u0000\u0083\u0084\u0005"+
 		"\u0003\u0000\u0000\u0084\u0085\u0003\u000e\u0007\u0000\u0085\t\u0001\u0000"+
-		"\u0000\u0000\u0086\u0087\u0005\u0004\u0000\u0000\u0087\u0088\u0005>\u0000"+
+		"\u0000\u0000\u0086\u0087\u0005\u0004\u0000\u0000\u0087\u0088\u0005?\u0000"+
 		"\u0000\u0088\u0089\u0005\u0005\u0000\u0000\u0089\u008a\u0003\u0016\u000b"+
 		"\u0000\u008a\u008b\u0005\u0006\u0000\u0000\u008b\u008c\u0003\u001c\u000e"+
 		"\u0000\u008c\u000b\u0001\u0000\u0000\u0000\u008d\u008e\u0005\u0007\u0000"+
-		"\u0000\u008e\u008f\u0005>\u0000\u0000\u008f\u0090\u0005\u0005\u0000\u0000"+
+		"\u0000\u008e\u008f\u0005?\u0000\u0000\u008f\u0090\u0005\u0005\u0000\u0000"+
 		"\u0090\u0091\u0003\u0014\n\u0000\u0091\r\u0001\u0000\u0000\u0000\u0092"+
 		"\u0097\u0003\u0010\b\u0000\u0093\u0094\u0005\b\u0000\u0000\u0094\u0096"+
 		"\u0003\u0010\b\u0000\u0095\u0093\u0001\u0000\u0000\u0000\u0096\u0099\u0001"+
 		"\u0000\u0000\u0000\u0097\u0095\u0001\u0000\u0000\u0000\u0097\u0098\u0001"+
 		"\u0000\u0000\u0000\u0098\u009a\u0001\u0000\u0000\u0000\u0099\u0097\u0001"+
 		"\u0000\u0000\u0000\u009a\u009b\u0005\u0005\u0000\u0000\u009b\u009c\u0003"+
-		"\u0014\n\u0000\u009c\u000f\u0001\u0000\u0000\u0000\u009d\u00a2\u0005>"+
-		"\u0000\u0000\u009e\u009f\u0005\t\u0000\u0000\u009f\u00a1\u0005>\u0000"+
+		"\u0014\n\u0000\u009c\u000f\u0001\u0000\u0000\u0000\u009d\u00a2\u0005?"+
+		"\u0000\u0000\u009e\u009f\u0005\t\u0000\u0000\u009f\u00a1\u0005?\u0000"+
 		"\u0000\u00a0\u009e\u0001\u0000\u0000\u0000\u00a1\u00a4\u0001\u0000\u0000"+
 		"\u0000\u00a2\u00a0\u0001\u0000\u0000\u0000\u00a2\u00a3\u0001\u0000\u0000"+
 		"\u0000\u00a3\u00a5\u0001\u0000\u0000\u0000\u00a4\u00a2\u0001\u0000\u0000"+
@@ -4059,7 +4061,7 @@ public class AlgumaParser extends Parser {
 		"\u0000\u0000\u0000\u00b2\u00b1\u0001\u0000\u0000\u0000\u00b3\u0015\u0001"+
 		"\u0000\u0000\u0000\u00b4\u00b5\u0007\u0000\u0000\u0000\u00b5\u0017\u0001"+
 		"\u0000\u0000\u0000\u00b6\u00b9\u0003\u0016\u000b\u0000\u00b7\u00b9\u0005"+
-		">\u0000\u0000\u00b8\u00b6\u0001\u0000\u0000\u0000\u00b8\u00b7\u0001\u0000"+
+		"?\u0000\u0000\u00b8\u00b6\u0001\u0000\u0000\u0000\u00b8\u00b7\u0001\u0000"+
 		"\u0000\u0000\u00b9\u0019\u0001\u0000\u0000\u0000\u00ba\u00bc\u0005\u0010"+
 		"\u0000\u0000\u00bb\u00ba\u0001\u0000\u0000\u0000\u00bb\u00bc\u0001\u0000"+
 		"\u0000\u0000\u00bc\u00bd\u0001\u0000\u0000\u0000\u00bd\u00be\u0003\u0018"+
@@ -4070,7 +4072,7 @@ public class AlgumaParser extends Parser {
 		"\u0000\u00c5\u00c6\u0001\u0000\u0000\u0000\u00c6\u00c8\u0001\u0000\u0000"+
 		"\u0000\u00c7\u00c5\u0001\u0000\u0000\u0000\u00c8\u00c9\u0005\u0014\u0000"+
 		"\u0000\u00c9\u001f\u0001\u0000\u0000\u0000\u00ca\u00cb\u0005\u0015\u0000"+
-		"\u0000\u00cb\u00cc\u0005>\u0000\u0000\u00cc\u00ce\u0005\u0016\u0000\u0000"+
+		"\u0000\u00cb\u00cc\u0005?\u0000\u0000\u00cc\u00ce\u0005\u0016\u0000\u0000"+
 		"\u00cd\u00cf\u0003$\u0012\u0000\u00ce\u00cd\u0001\u0000\u0000\u0000\u00ce"+
 		"\u00cf\u0001\u0000\u0000\u0000\u00cf\u00d0\u0001\u0000\u0000\u0000\u00d0"+
 		"\u00d4\u0005\u0017\u0000\u0000\u00d1\u00d3\u0003\u0006\u0003\u0000\u00d2"+
@@ -4081,7 +4083,7 @@ public class AlgumaParser extends Parser {
 		"\u0001\u0000\u0000\u0000\u00da\u00d8\u0001\u0000\u0000\u0000\u00da\u00db"+
 		"\u0001\u0000\u0000\u0000\u00db\u00dd\u0001\u0000\u0000\u0000\u00dc\u00da"+
 		"\u0001\u0000\u0000\u0000\u00dd\u00f6\u0005\u0018\u0000\u0000\u00de\u00df"+
-		"\u0005\u0019\u0000\u0000\u00df\u00e0\u0005>\u0000\u0000\u00e0\u00e2\u0005"+
+		"\u0005\u0019\u0000\u0000\u00df\u00e0\u0005?\u0000\u0000\u00e0\u00e2\u0005"+
 		"\u0016\u0000\u0000\u00e1\u00e3\u0003$\u0012\u0000\u00e2\u00e1\u0001\u0000"+
 		"\u0000\u0000\u00e2\u00e3\u0001\u0000\u0000\u0000\u00e3\u00e4\u0001\u0000"+
 		"\u0000\u0000\u00e4\u00e5\u0005\u0017\u0000\u0000\u00e5\u00e6\u0005\u0005"+
@@ -4156,7 +4158,7 @@ public class AlgumaParser extends Parser {
 		"\u0000\u015d\u015c\u0001\u0000\u0000\u0000\u015d\u015e\u0001\u0000\u0000"+
 		"\u0000\u015e\u015f\u0001\u0000\u0000\u0000\u015f\u0160\u0005$\u0000\u0000"+
 		"\u01603\u0001\u0000\u0000\u0000\u0161\u0162\u0005%\u0000\u0000\u0162\u0163"+
-		"\u0005>\u0000\u0000\u0163\u0164\u0005&\u0000\u0000\u0164\u0165\u0003J"+
+		"\u0005?\u0000\u0000\u0163\u0164\u0005&\u0000\u0000\u0164\u0165\u0003J"+
 		"%\u0000\u0165\u0166\u0005\'\u0000\u0000\u0166\u0167\u0003J%\u0000\u0167"+
 		"\u016b\u0005(\u0000\u0000\u0168\u016a\u0003(\u0014\u0000\u0169\u0168\u0001"+
 		"\u0000\u0000\u0000\u016a\u016d\u0001\u0000\u0000\u0000\u016b\u0169\u0001"+
@@ -4177,7 +4179,7 @@ public class AlgumaParser extends Parser {
 		"\u0000\u0000\u0000\u0186\u0187\u0001\u0000\u0000\u0000\u0187\u0188\u0001"+
 		"\u0000\u0000\u0000\u0188\u0189\u0003\u0010\b\u0000\u0189\u018a\u0005&"+
 		"\u0000\u0000\u018a\u018b\u0003b1\u0000\u018b;\u0001\u0000\u0000\u0000"+
-		"\u018c\u018d\u0005>\u0000\u0000\u018d\u018e\u0005\u0016\u0000\u0000\u018e"+
+		"\u018c\u018d\u0005?\u0000\u0000\u018d\u018e\u0005\u0016\u0000\u0000\u018e"+
 		"\u0193\u0003b1\u0000\u018f\u0190\u0005\b\u0000\u0000\u0190\u0192\u0003"+
 		"b1\u0000\u0191\u018f\u0001\u0000\u0000\u0000\u0192\u0195\u0001\u0000\u0000"+
 		"\u0000\u0193\u0191\u0001\u0000\u0000\u0000\u0193\u0194\u0001\u0000\u0000"+
@@ -4226,7 +4228,7 @@ public class AlgumaParser extends Parser {
 		"\u01e5W\u0001\u0000\u0000\u0000\u01e6\u01e8\u0005\u0010\u0000\u0000\u01e7"+
 		"\u01e6\u0001\u0000\u0000\u0000\u01e7\u01e8\u0001\u0000\u0000\u0000\u01e8"+
 		"\u01e9\u0001\u0000\u0000\u0000\u01e9\u01fa\u0003\u0010\b\u0000\u01ea\u01eb"+
-		"\u0005>\u0000\u0000\u01eb\u01ec\u0005\u0016\u0000\u0000\u01ec\u01f1\u0003"+
+		"\u0005?\u0000\u0000\u01eb\u01ec\u0005\u0016\u0000\u0000\u01ec\u01f1\u0003"+
 		"b1\u0000\u01ed\u01ee\u0005\b\u0000\u0000\u01ee\u01f0\u0003b1\u0000\u01ef"+
 		"\u01ed\u0001\u0000\u0000\u0000\u01f0\u01f3\u0001\u0000\u0000\u0000\u01f1"+
 		"\u01ef\u0001\u0000\u0000\u0000\u01f1\u01f2\u0001\u0000\u0000\u0000\u01f2"+
@@ -4238,7 +4240,7 @@ public class AlgumaParser extends Parser {
 		"\u0000\u01f9\u01f8\u0001\u0000\u0000\u0000\u01faY\u0001\u0000\u0000\u0000"+
 		"\u01fb\u01fc\u0005\u0016\u0000\u0000\u01fc\u01fd\u0003b1\u0000\u01fd\u01fe"+
 		"\u0005\u0017\u0000\u0000\u01fe[\u0001\u0000\u0000\u0000\u01ff\u0200\u0005"+
-		"3\u0000\u0000\u0200\u0203\u0003\u0010\b\u0000\u0201\u0203\u0005?\u0000"+
+		"3\u0000\u0000\u0200\u0203\u0003\u0010\b\u0000\u0201\u0203\u0005B\u0000"+
 		"\u0000\u0202\u01ff\u0001\u0000\u0000\u0000\u0202\u0201\u0001\u0000\u0000"+
 		"\u0000\u0203]\u0001\u0000\u0000\u0000\u0204\u0208\u0003J%\u0000\u0205"+
 		"\u0206\u0003`0\u0000\u0206\u0207\u0003J%\u0000\u0207\u0209\u0001\u0000"+

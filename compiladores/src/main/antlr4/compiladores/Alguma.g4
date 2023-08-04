@@ -10,40 +10,6 @@
 
 grammar Alguma;
 
-// Numeros inteiros e reais
-NUM_INT 
-    :   ('0'..'9')+ ;
-
-NUM_REAL 
-    :   ('0'..'9')+('.'('0'..'9')+)?
-    ;
-                                
-// Identificadores
-IDENT
-    :   [a-zA-Z][a-zA-Z0-9_]*
-    ;
-
-CADEIA
-    :   '"' (~["\\\r\n] | ESC_SEQ)* '"'
-	;
-
-fragment
-ESC_SEQ	: '\\\'';
-
-// Ignorando comentario, mas acusando erro de comentario nao fechado
-COMENTARIO
-    :   '{' ~[\r\n{}]* '}' [\r]? [\n]? -> skip
-    ;
-
-// Ignorando White Space
-WS  
-    :   ( ' '
-        | '\t'
-        | '\r'
-        | '\n'
-        ) -> skip
-    ;
-
 programa: declaracoes 'algoritmo' corpo 'fim_algoritmo' EOF;
 declaracoes: (decl_local_global)*;
 decl_local_global: declaracao_local | declaracao_global;
@@ -104,3 +70,44 @@ fator_logico: ('nao')? parcela_logica;
 parcela_logica: ('verdadeiro' | 'falso') | exp_relacional;
 op_logico_1: 'ou';
 op_logico_2: 'e';
+
+// Numeros inteiros e reais
+NUM_INT 
+    :   ('0'..'9')+ ;
+
+NUM_REAL 
+    :   ('0'..'9')+('.'('0'..'9')+)?
+    ;
+
+// Definicao de um digito
+Digito	
+    :	'0'..'9'
+    ; 
+
+// Identificadores
+IDENT	
+    :	([a-zA-Z])([a-zA-Z]|Digito|'_')*
+    ;
+
+//Ignora comentario, mas acusando erro de comentario nao fechado
+Comentario  
+    :  '{' ~[\r\n{}]* '}' [\r]? [\n]? -> skip
+    ; 
+
+Nao_Fechado  :  '{' (~('\n'|'\r'|'{'|'}'))* '\r'? '\n'?;
+
+CADEIA 	: '"' ( ESC_SEQ | ~('"'|'\\'|'\n'|'\r') )* '"';
+
+Literal_Nao_Fechada: '"' ( ESC_SEQ | ~('"'|'\\') )* '\r'? '\n'?;
+
+ESC_SEQ	: '\\\'' | '\\n';
+
+// Ignorando white-Space
+WS  :   ( ' '
+        | '\t'
+        | '\r'
+        | '\n'
+        ) {skip();}
+    ;
+
+ERR : ~('a');
