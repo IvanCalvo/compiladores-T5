@@ -171,7 +171,6 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
 
     @Override
     public Void visitDeclaracao_local(Declaracao_localContext ctx) {
-        System.out.println("Declaring " + ctx.getText());
         if(ctx.declaracao_variavel() != null){
             visitDeclaracao_variavel(ctx.declaracao_variavel());
         }
@@ -196,7 +195,6 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
             for(VariavelContext sub : ctx.tipo().registro().variavel()){
                 for(IdentificadorContext idIns : sub.identificador()){
                     TabelaDeSimbolos.TipoAlguma tipoIns = AlgumaSemanticoUtils.getTipo(sub.tipo().getText());
-                    System.out.println("Inserting reg " + sub.getText() + "." + idIns.getText());
                     tabela.adicionar(ctx.IDENT().getText() + "." + idIns.getText(), tipoIns, TabelaDeSimbolos.Structure.VAR);
                     tabela.adicionar(ctx.IDENT().getText(), tabela.new EntradaTabelaDeSimbolos(idIns.getText(), tipoIns, TabelaDeSimbolos.Structure.TIPO));
                 }
@@ -218,7 +216,6 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     public Void visitVariavel(VariavelContext ctx) {
         
         String cTipo = AlgumaSemanticoUtils.getCType(ctx.tipo().getText().replace("^", ""));
-        System.out.println("Visiting " + ctx.getText());
         TabelaDeSimbolos.TipoAlguma tipo = AlgumaSemanticoUtils.getTipo(ctx.tipo().getText());
         for(AlgumaParser.IdentificadorContext id: ctx.identificador()) {
             if(ctx.tipo().getText().contains("registro")){
@@ -240,7 +237,6 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
             if(id.getText().contains("[")){
                 int ini = id.getText().indexOf("[", 0);
                 int end = id.getText().indexOf("]", 0);
-                System.out.println("ini = " + (ini+1) + " end = " + (end-1) + " out of " + id.getText());
                 String tam;
                 if(end-ini == 2)
                     tam = String.valueOf(id.getText().charAt(ini+1));
@@ -248,7 +244,6 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
                     tam = id.getText().substring(ini + 1, end - 1);
                 String nome = id.IDENT().get(0).getText();
                 for(int i = 0; i < Integer.parseInt(tam); i++){
-                    System.out.println("Cadastrano " + nome + "[" + i + "]");
                     tabela.adicionar(nome + "[" + i + "]", tipo, TabelaDeSimbolos.Structure.VAR);
                 }
 
@@ -425,8 +420,6 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
     public Void visitCmdEscreva(CmdEscrevaContext ctx) { 
         for(AlgumaParser.ExpressaoContext exp: ctx.expressao()) {
                 Escopos escopo = new Escopos(tabela);
-                System.out.println("Searching for " + exp.getText());
-                System.out.println("Does it exists in Table? " + tabela.existe(exp.getText()));
                 String cType = AlgumaSemanticoUtils.getCTypeSymbol(AlgumaSemanticoUtils.verificar(escopo, exp));
                 if(tabela.existe(exp.getText())){
                     TabelaDeSimbolos.TipoAlguma tip = tabela.verificar(exp.getText());
@@ -463,7 +456,7 @@ public class AlgumaGeradorC extends AlgumaBaseVisitor<Void> {
             }
         }
         catch(Exception e){
-            System.out.println(e.getMessage() +  " q ocorreu");
+            System.out.println(e.getMessage());
         }
         return null;
     }
