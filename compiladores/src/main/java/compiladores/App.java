@@ -33,7 +33,13 @@ public class App {
             for(String error: AlgumaSemanticoUtils.errosSemanticos){
                 p.println(error);
             }
-            p.println("Fim da compilacao");
+            if(AlgumaSemanticoUtils.errosSemanticos.isEmpty()) {
+                AlgumaGeradorC agc = new AlgumaGeradorC();
+                agc.visitPrograma(arvore);
+                try(PrintWriter pw = new PrintWriter(args[1])) {
+                    pw.print(agc.saida.toString());
+                }
+            }
             p.close();
         } catch (Exception e) {
             e.printStackTrace();
